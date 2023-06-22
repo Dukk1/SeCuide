@@ -163,6 +163,14 @@ insert into usuario(nome, email, login, senha, idPerfil) values ('Danilo', 'dani
 insert into usuario(nome, email, login, senha, idPerfil) values ('Daniel', 'daniel@email.com', 'daniel.torres', '202cb962ac59075b964b07152d234b70', '1');
 insert into usuario(nome, email, login, senha, idPerfil) values ('Carlin', 'carlin@email.com', 'carlin.torres', '202cb962ac59075b964b07152d234b70', '3');
 
+insert into especialidade (especialidade) values ('Cardiologia');
+insert into especialidade (especialidade) values ('Neurologia');
+insert into especialidade (especialidade) values ('Psiquiatria');
+insert into especialidade (especialidade) values ('Endocrinologia');
+insert into especialidade (especialidade) values ('Ortopedia');
+insert into especialidade (especialidade) values ('Dermatologia');
+insert into especialidade (especialidade) values ('Oftalmologia')
+
 insert into paciente (nome, pai, mae, dt_nasc, naturalidade, nacionalidade, raca, endereco, rg, cpf, sexo, idUsuario) values
 ('Danilo', 'Manoel', 'Célia', '2005-08-15', 'Brasília-DF', 'Brasileiro', 'Pardo', 'Escola Técnica de Ceilândia', '1.234.567', '123.456.789-10', 'M', 1);
 insert into paciente (nome, pai, mae, dt_nasc, naturalidade, nacionalidade, raca, endereco, rg, cpf, sexo, idUsuario) values

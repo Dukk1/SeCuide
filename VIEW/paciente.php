@@ -2,6 +2,7 @@
 session_start();
 include_once "../webconfig.html";
 require_once "../DAO/PacienteDAO.php";
+require_once "../DAO/EspecialidadeDAO.php";
 
 if (!isset($_SESSION['idUsuario'])) {
     header('location: loginuser.php');
@@ -69,23 +70,6 @@ if (!isset($_SESSION['idUsuario'])) {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.php">Home Page</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a name="nav-button" class="nav-link" href="view/CadastrarAluno.php">Editar Perfil</a>
-                </li>
-                <li class="nav-item">
-                    <a name="nav-button" class="nav-link" href="view/CadastrarNucleoAtendimento.php">Enviar Prontuario</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
     <form name="perfilForm" id="perfilForm" method="POST" action="../Controller/pacienteControl.php">
         <label for="nome">Nome Completo:</label>
         <input type="text" id="nome" name="nome" value="<?php if(isset($usuario['nome'])) { echo $usuario['nome']; } else echo "";  ?>" required>
@@ -98,9 +82,31 @@ if (!isset($_SESSION['idUsuario'])) {
 
         <label for="dt_nasc">Data de Nascimento:</label>
         <input type="date" id="dt_nasc" name="dt_nasc" value="<?php if(isset($usuario['dt_nasc'])) { echo $usuario['dt_nasc']; } else echo "";  ?>" required>
+        
+        <?php if ($_SESSION['idPerfil'] == 2) { ?>
+            <label for="registro">Registro:</label>
+            <input type="text" id="registro" name="registro" value="<?php if(isset($usuario['registro'])) { echo $usuario['registro']; } else echo "";  ?>" required>
 
-        <label for="raca">Raça:</label>
-        <input type="text" id="raca" name="raca" value="<?php if(isset($usuario['raca'])) { echo $usuario['raca']; } else echo "";  ?>" required>
+            <label for="especialidade">Especialidade:</label>
+            <select name="especialidade">
+
+            <?php 
+            $EspecialidadeDAO = new EspecialidadeDAO();
+            $especialidades = $EspecialidadeDAO->ObterEspecialidades();
+
+            var_dump($especialidades);
+            foreach ($especialidades as $especialidade) 
+            {
+                echo "<option value='".$especialidade['idEspecialidade']."'>".$especialidade['especialidade']."</option>";
+            }
+            
+            ?>
+            </select><br>
+
+        <?php } else { ?>
+            <label for="raca">Raça:</label>
+            <input type="text" id="raca" name="raca" value="<?php if(isset($usuario['raca'])) { echo $usuario['raca']; } else echo "";  ?>" required>
+        <?php } ?>
 
         <label for="address">Endereço:</label>
         <input type="text" id="address" name="address" value="<?php if(isset($usuario['endereco'])) { echo $usuario['endereco']; } else echo "";  ?>"required>

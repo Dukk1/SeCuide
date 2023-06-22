@@ -31,6 +31,45 @@ include_once "webconfig.html";
     <meta property="og:title" content="Home">
     <meta property="og:type" content="website">
     <meta data-intl-tel-input-cdn-path="intlTelInput/">
+
+    <style>
+        .combobox {
+            position: relative;
+            display: flex;
+        }
+
+        .combobox .dropdown {
+            display: none;
+            position: absolute;
+            z-index: 1;
+            left: 83.2%;
+            width: 160px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .combobox:hover .dropdown {
+            display: block;
+        }
+
+        .combobox .option {
+            display: block;
+            padding: 5px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .combobox .option:hover {
+            background-color: #ccc;
+        }
+    </style>
+
+    <script>
+        function openCombobox(element) {
+            element.click();
+        }
+    </script>
 </head>
 
 <body data-home-page="Home.html" data-home-page-title="Home" class="u-body u-xl-mode" data-lang="en">
@@ -85,10 +124,20 @@ include_once "webconfig.html";
             if (!isset($_SESSION['idUsuario'])) {
                 echo '<a href="VIEW/loginuser.php" class="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-6 u-btn-1">Login<br>';
                 echo '</a>';
-            } else {
-                echo '<a href="VIEW/loginuser.php" class="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-6 u-btn-1">Minha Conta<br>';
-                echo '</a>';
-            }
+            } else ?> <?php {  ?>
+                <div class="combobox">
+                    <a href="#" class="toggle u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-6 u-btn-1">Minha Conta</a>
+                    <div class="dropdown ">
+                        <a href="view/paciente.php" class="option">Perfil</a>
+                        <?php if ($_SESSION['idPerfil'] == 2) { ?>
+                            <a href="view/doctor.php" class="option">Pacientes</a>
+                        <?php } else { ?>
+                            <a href="#" class="option">Consultas</a>
+                        <?php } ?>
+                        <a href="#" class="option">Sair</a>
+                    </div>
+                </div>
+            <?php  }
             ?>
         </div>
     </header>

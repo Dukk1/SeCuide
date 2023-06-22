@@ -1,6 +1,6 @@
 <?php
 
-require_once '/Conexao/Conexao.php';
+require_once 'conexao/Conexao.php';
 
 class FuncionarioDAO {
 
@@ -30,7 +30,7 @@ class FuncionarioDAO {
 
     public function Gravar(FuncionarioDTO $FuncionarioDTO) {
         $pdo = Conexao::getInstance();
-        $sql = "insert into funcionario (nome, pai, mae, dt_nasc, naturalidade, nacionalidade, registro, endereco, rg, cpf, seco, idEspecialidade) values(?,?,?,?,?,?,?,?,?,?,?,?);";
+        $sql = "insert into funcionario (nome, pai, mae, dt_nasc, naturalidade, nacionalidade, registro, endereco, rg, cpf, sexo, idEspecialidade) values(?,?,?,?,?,?,?,?,?,?,?,?);";
         $execucao = $pdo->prepare($sql);
         $execucao->bindValue(1, $FuncionarioDTO->getNome());
         $execucao->bindValue(2, $FuncionarioDTO->getPai());

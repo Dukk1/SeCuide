@@ -1,19 +1,19 @@
 <?php
 
-require_once '/Conexao/Conexao.php';
+require_once 'Conexao/Conexao.php';
 
 class EspecialidadeDAO {
 
     public $pdo = null;
 
-    public function Pesquisar() {
+    public function ObterEspecialidades() {
 
         $pdo = Conexao::getInstance();
-        $sql = "select * from especialidade;";
+        $sql = "SELECT * FROM especialidade;";
 
         $execucao = $pdo->prepare($sql);
         $execucao->execute();
-        $pesquisa = $execucao -> fetchALL(PDO::FETCH_ASSOC);
+        $pesquisa = $execucao->fetchALL(PDO::FETCH_ASSOC);
         return $pesquisa;
     }
 
@@ -25,6 +25,7 @@ class EspecialidadeDAO {
         $execucao->bindValue(1, $EspecialidadeDTO->getIdEspecialidade());
         $execucao->execute();
         $pesquisa = $execucao->fetch(PDO::FETCH_ASSOC);
+        return $pesquisa;
     }
 
     public function Gravar(EspecialidadeDTO $EspecialidadeDTO) {
