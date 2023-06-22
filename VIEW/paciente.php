@@ -3,14 +3,20 @@ session_start();
 include_once "../webconfig.html";
 require_once "../DAO/PacienteDAO.php";
 require_once "../DAO/EspecialidadeDAO.php";
+require_once "../DAO/FuncionarioDAO.php";
 
 if (!isset($_SESSION['idUsuario'])) {
     header('location: loginuser.php');
   }
 
+  if ($_SESSION['idPerfil'] == 3) {
   $PacienteDAO = new PacienteDAO();
-
   $usuario = $PacienteDAO->PesquisarByID($_SESSION['idUsuario']);
+  } 
+  else if ($_SESSION['idPerfil'] == 2) {
+  $FuncionarioDAO = new FuncionarioDAO();
+  $usuario = $FuncionarioDAO->PesquisarByID($_SESSION['idUsuario']);
+  }
 
   var_dump($usuario);
 ?>

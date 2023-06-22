@@ -36,8 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {;
                 $result = $PacienteDAO->Gravar($PacienteDTO);
             } else if ($_SESSION['idPerfil'] == 2) {
 
-                printf($_POST['especialidade']);
-
                 $FuncionarioDTO = new FuncionarioDTO();
                 $FuncionarioDTO->setNome($_POST['nome']);
                 $FuncionarioDTO->setPai($_POST['pai']);
@@ -51,8 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {;
                 $FuncionarioDTO->setNaturalidade($_POST['natu']);
                 $FuncionarioDTO->setSexo($_POST['sexo']);
                 $FuncionarioDTO->setIdEspecialidade($_POST['especialidade']);
+                $FuncionarioDTO->setIdUsuario($_SESSION['idUsuario']);
 
-                //var_dump($UsuarioDTO);
+                var_dump($FuncionarioDTO);
 
                 $FuncionarioDAO = new FuncionarioDAO();
                 $result = $FuncionarioDAO->Gravar($FuncionarioDTO);

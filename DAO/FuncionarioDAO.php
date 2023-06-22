@@ -17,6 +17,16 @@ class FuncionarioDAO {
         return $pesquisa;
     }
 
+    public function PesquisarByID($UserID) {
+
+        $pdo = Conexao::getInstance();
+        $sql = "select * from funcionario where idUsuario = ?;";
+        $execucao = $pdo->prepare($sql);
+        $execucao->bindValue(1, $UserID);
+        $execucao->execute();
+        return $execucao->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function PesquisarUmRegistro(FuncionarioDTO $FuncionarioDTO) {
 
         $pdo = Conexao::getInstance();
@@ -30,7 +40,7 @@ class FuncionarioDAO {
 
     public function Gravar(FuncionarioDTO $FuncionarioDTO) {
         $pdo = Conexao::getInstance();
-        $sql = "insert into funcionario (nome, pai, mae, dt_nasc, naturalidade, nacionalidade, registro, endereco, rg, cpf, sexo, idEspecialidade) values(?,?,?,?,?,?,?,?,?,?,?,?);";
+        $sql = "insert into funcionario (nome, pai, mae, dt_nasc, naturalidade, nacionalidade, registro, endereco, rg, cpf, sexo, idEspecialidade, idUsuario) values(?,?,?,?,?,?,?,?,?,?,?,?,?);";
         $execucao = $pdo->prepare($sql);
         $execucao->bindValue(1, $FuncionarioDTO->getNome());
         $execucao->bindValue(2, $FuncionarioDTO->getPai());
@@ -44,6 +54,7 @@ class FuncionarioDAO {
         $execucao->bindValue(10, $FuncionarioDTO->getCpf());
         $execucao->bindValue(11, $FuncionarioDTO->getSexo());
         $execucao->bindValue(12, $FuncionarioDTO->getIdEspecialidade());
+        $execucao->bindValue(13, $FuncionarioDTO->getidUsuario());
         $resultado = $execucao->execute();
         return $resultado;
     }

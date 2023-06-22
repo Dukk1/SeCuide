@@ -52,6 +52,8 @@ cpf varchar (50) not null,
 sexo char (2) not null,
 idEspecialidade int(10) not null,
 primary key (idFuncionario),
+idUsuario int(10) not null,
+constraint usuario_funcionario foreign key (idUsuario) references usuario (idUsuario),
 constraint especialidade_funcionario foreign key (idEspecialidade) references funcionario (idFuncionario)
 )
 engine = innodb
@@ -159,10 +161,6 @@ insert into perfil (descricao) values ('Administrador');
 insert into perfil (descricao) values ('Medico');
 insert into perfil (descricao) values ('Paciente');
 
-insert into usuario(nome, email, login, senha, idPerfil) values ('Danilo', 'danilo@email.com', 'danilo.silva', '202cb962ac59075b964b07152d234b70', '3');
-insert into usuario(nome, email, login, senha, idPerfil) values ('Daniel', 'daniel@email.com', 'daniel.torres', '202cb962ac59075b964b07152d234b70', '1');
-insert into usuario(nome, email, login, senha, idPerfil) values ('Carlin', 'carlin@email.com', 'carlin.torres', '202cb962ac59075b964b07152d234b70', '3');
-
 insert into especialidade (especialidade) values ('Cardiologia');
 insert into especialidade (especialidade) values ('Neurologia');
 insert into especialidade (especialidade) values ('Psiquiatria');
@@ -171,10 +169,28 @@ insert into especialidade (especialidade) values ('Ortopedia');
 insert into especialidade (especialidade) values ('Dermatologia');
 insert into especialidade (especialidade) values ('Oftalmologia')
 
+insert into usuario(nome, email, login, senha, idPerfil) values ('Joao', 'Joao@email.com', 'joao.silva', '202cb962ac59075b964b07152d234b70', '2');
+insert into usuario(nome, email, login, senha, idPerfil) values ('Erick', 'Erick@email.com', 'erick.torres', '202cb962ac59075b964b07152d234b70', '2');
+insert into usuario(nome, email, login, senha, idPerfil) values ('Rafaela', 'Rafaela@email.com', 'rafaela.torres', '202cb962ac59075b964b07152d234b70', '2');
+insert into usuario(nome, email, login, senha, idPerfil) values ('Leticia', 'leticia@email.com', 'danilo.silva', '202cb962ac59075b964b07152d234b70', '2');
+
+insert into usuario(nome, email, login, senha, idPerfil) values ('Manoel', 'manuel@email.com', 'manoel.gomes', '202cb962ac59075b964b07152d234b70', '3');
+insert into usuario(nome, email, login, senha, idPerfil) values ('Renata', 'renata@email.com', 'renata.torres', '202cb962ac59075b964b07152d234b70', '3');
+
 insert into paciente (nome, pai, mae, dt_nasc, naturalidade, nacionalidade, raca, endereco, rg, cpf, sexo, idUsuario) values
-('Danilo', 'Manoel', 'Célia', '2005-08-15', 'Brasília-DF', 'Brasileiro', 'Pardo', 'Escola Técnica de Ceilândia', '1.234.567', '123.456.789-10', 'M', 1);
+('Manoel Gomes', 'Manoel', 'Célia', '1980-08-15', 'Brasília - DF', 'Brasileiro', 'Pardo', 'Ceilândia', '1.234.567', '123.456.789-10', 'M', 5);
 insert into paciente (nome, pai, mae, dt_nasc, naturalidade, nacionalidade, raca, endereco, rg, cpf, sexo, idUsuario) values
-('Erick', 'Birobiro', 'MADELAINE', '2003-05-24', 'São Paulo - SP', 'Brasileiro', 'Branco', 'Bem ali', '1.234.567', '123.456.789-10', 'M', 2);
+('Renata Silva', 'Birobiro', 'Madalene', '1829-05-24', 'São Paulo - SP', 'Alemão', 'Branco', 'Taguatinga', '1.234.567', '123.456.789-10', 'F', 6);
+
+
+insert into funcionario (nome, pai, mae, dt_nasc, naturalidade, nacionalidade, registro, endereco, rg, cpf, sexo, idEspecialidade, idUsuario) values
+('Joao', 'Souza', 'Maria', '2003-03-12', 'São Paulo - SP', 'Brasileiro', '123456', 'Ceilândia', '1.234.567', '123.456.789-10', 'M', 3, 1);
+insert into funcionario (nome, pai, mae, dt_nasc, naturalidade, nacionalidade, registro, endereco, rg, cpf, sexo, idEspecialidade, idUsuario) values
+('Erick', 'Birobiro', 'Meira', '2003-08-11', 'São Paulo - SP', 'Brasileiro', '123456', 'Taguatinga', '1.234.567', '123.456.789-10', 'M', 2, 2);
+insert into funcionario (nome, pai, mae, dt_nasc, naturalidade, nacionalidade, registro, endereco, rg, cpf, sexo, idEspecialidade, idUsuario) values
+('Rafaela', 'Santos', 'Meliça', '2003-01-21', 'São Paulo - SP', 'Brasileiro', '123456', 'Lago Sul', '1.234.567', '123.456.789-10', 'F', 4, 3);
+insert into funcionario (nome, pai, mae, dt_nasc, naturalidade, nacionalidade, registro, endereco, rg, cpf, sexo, idEspecialidade, idUsuario) values
+('Leticia', 'Bittencourt', 'Misha', '2003-09-01', 'São Paulo - SP', 'Brasileiro', '123456', 'Aguas Claras', '1.234.567', '123.456.789-10', 'F', 4, 4);
 
 --Comando para selecionar os dados da tabela formatando o tipo de data.
 -- * = Selecionar todos os campos da tabela 

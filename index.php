@@ -120,11 +120,7 @@ include_once "webconfig.html";
                     <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
                 </div>
             </nav>
-            <?php
-            if (!isset($_SESSION['idUsuario'])) {
-                echo '<a href="VIEW/loginuser.php" class="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-6 u-btn-1">Login<br>';
-                echo '</a>';
-            } else ?> <?php {  ?>
+            <?php if (isset($_SESSION['idUsuario']) && isset($_SESSION['idPerfil'])) { ?>
                 <div class="combobox">
                     <a href="#" class="toggle u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-6 u-btn-1">Minha Conta</a>
                     <div class="dropdown ">
@@ -134,11 +130,12 @@ include_once "webconfig.html";
                         <?php } else { ?>
                             <a href="#" class="option">Consultas</a>
                         <?php } ?>
-                        <a href="#" class="option">Sair</a>
+                        <a href="Controller/logoutControl.php" class="option">Sair</a>
                     </div>
                 </div>
-            <?php  }
-            ?>
+            <?php  } else { ?>
+                <a href="VIEW/loginuser.php" class="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-6 u-btn-1">Login<br></a>
+            <?php }  ?>
         </div>
     </header>
 

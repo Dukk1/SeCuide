@@ -27,6 +27,7 @@ class FuncionarioDTO {
     private $cpf;
     private $sexo;
     private $idEspecialidade;
+    private $idUsuario;
 
     function getIdFuncionario() {
         return $this->idFuncionario;
@@ -80,6 +81,10 @@ class FuncionarioDTO {
         return $this->idEspecialidade;
     }
 
+    function getIdUsuario() {
+        return $this->idUsuario;
+    }
+
     function setIdFuncionario($idFuncionario) {
         $this->idFuncionario = $idFuncionario;
     }
@@ -130,6 +135,10 @@ class FuncionarioDTO {
 
     function setIdEspecialidade($idEspecialidade) {
         $this->idEspecialidade = $idEspecialidade;
+    }
+
+    function setIdUsuario($idUsuario) {
+        $this->idUsuario = $idUsuario;
     }
 
     //fim
