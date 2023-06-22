@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit();
             } 
             else if ($login["idPerfil"] == 2) { //is medico
-                echo "<script>alert('Login Realizado com Sucesso!!'); window.location.href = '../view/doctors.php';</script>";
+                echo "<script>alert('Login Realizado com Sucesso!!'); window.location.href = '../view/doctor.php';</script>";
                 exit();
 
             } else if ($login["idPerfil"] == 3) { //is paciente

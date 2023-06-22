@@ -1,0 +1,7 @@
+
+
+To do:
+* Mudar paciente.php para perfil.php e poder alterar o perfil de todos os tipos de container
+* Doctor.php: mudar o botao de prontuario para consultar e poder fazer a consultar
+* Fazer o pontuario, criar uma agenda e colocar o horario da consulta na lista de pacientes em doctor.php
+* terminar o front end aaaaaaaaaaa

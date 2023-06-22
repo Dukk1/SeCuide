@@ -1,3 +1,8 @@
+<?php
+session_start();
+include_once "webconfig.html";
+?>
+
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="en">
 
@@ -76,19 +81,26 @@
                     <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
                 </div>
             </nav>
-            <a href="VIEW/loginuser.php" class="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-6 u-btn-1">Login<br>
-            </a>
+            <?php
+            if (!isset($_SESSION['idUsuario'])) {
+                echo '<a href="VIEW/loginuser.php" class="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-6 u-btn-1">Login<br>';
+                echo '</a>';
+            } else {
+                echo '<a href="VIEW/loginuser.php" class="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-6 u-btn-1">Minha Conta<br>';
+                echo '</a>';
+            }
+            ?>
         </div>
     </header>
 
     <section class="u-align-center u-clearfix u-image u-shading u-section-1" src="" data-image-width="256" data-image-height="256" id="sec-28ce">
-      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <h1 class="u-text u-text-default u-title u-text-1">Se Cuide</h1>
-        <p class="u-large-text u-text u-text-default u-text-variant u-text-2">
-Conecte-se com médicos profissionais de forma rápida e conveniente! Tenha consultas online em nosso site, economizando tempo e garantindo atendimento de qualidade. Sua saúde em boas mãos, a apenas um clique de distância!
-</p>
-        <a href="#" class="u-btn u-button-style u-palette-2-base u-btn-1">Consulte-se Agora!</a>
-      </div>
+        <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+            <h1 class="u-text u-text-default u-title u-text-1">Se Cuide</h1>
+            <p class="u-large-text u-text u-text-default u-text-variant u-text-2">
+                Conecte-se com médicos profissionais de forma rápida e conveniente! Tenha consultas online em nosso site, economizando tempo e garantindo atendimento de qualidade. Sua saúde em boas mãos, a apenas um clique de distância!
+            </p>
+            <a href="#" class="u-btn u-button-style u-palette-2-base u-btn-1">Consulte-se Agora!</a>
+        </div>
     </section>
 
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-01eb">
