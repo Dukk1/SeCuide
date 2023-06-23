@@ -1,6 +1,6 @@
 <?php
 
-require_once '/Conexao/Conexao.php';
+require_once 'Conexao/Conexao.php';
 
 class ProntuarioDAO {
 
@@ -15,6 +15,16 @@ class ProntuarioDAO {
         $execucao->execute();
         $pesquisa = $execucao -> fetchALL(PDO::FETCH_ASSOC);
         return $pesquisa;
+    }
+
+    public function PesquisarByID($UserID) {
+
+        $pdo = Conexao::getInstance();
+        $sql = "select * from prontuario where idPaciente = ?;";
+        $execucao = $pdo->prepare($sql);
+        $execucao->bindValue(1, $UserID);
+        $execucao->execute();
+        return $execucao->fetch(PDO::FETCH_ASSOC);
     }
 
     public function PesquisarUmRegistro(ProntuarioDTO $ProntuarioDTO) {

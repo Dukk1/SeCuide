@@ -2,6 +2,11 @@
 session_start();
 include_once "../webconfig.html";
 require_once "../DAO/PacienteDAO.php";
+require_once "../DAO/ConsultaDAO.php";
+require_once "../DAO/AgendaDAO.php";
+require_once "../DAO/EspecialidadeDAO.php";
+require_once "../DAO/FuncionarioDAO.php";
+require_once "../DAO/ProntuarioDAO.php";
 
 // if (!isset($_SESSION['idUsuario'])) {
 //     header('location: loginuser.php');
@@ -9,6 +14,9 @@ require_once "../DAO/PacienteDAO.php";
 
 $PacienteDAO = new PacienteDAO();
 $pacientes = $PacienteDAO->ObterPacientes();
+
+$AgendaDAO = new AgendaDAO();
+$agendas = $AgendaDAO->Pesquisar();
 ?>
 
 <!DOCTYPE html>
@@ -132,18 +140,25 @@ $pacientes = $PacienteDAO->ObterPacientes();
     <h1>Lista de Pacientes</h1>
 
     <ul>
-        <?php foreach ($pacientes as $paciente) : ?>
+        <?php foreach ($agendas as $agenda) : ?>
             <li>
                 <div class="patient-info">
-                    <h3><?php echo $paciente['nome']; ?></h3>
-                    <p>Sexo: <?php echo $paciente['sexo']; ?></p>
-                    <p>Raça: <?php echo $paciente['raca']; ?></p>
-                    <p>Data de Nascimento: <?php echo strftime('%d/%m/%Y', strtotime($paciente['dt_nasc'])); ?>
-                    <p>Endereço: <?php echo $paciente['endereco']; ?></p>
-                    <p>Pai: <?php echo $paciente['pai']; ?></p>
-                    <p>Mae: <?php echo $paciente['mae']; ?></p>
-                    <p>Nacionalidade: <?php echo $paciente['nacionalidade']; ?></p>
-                    <p>Naturalidade: <?php echo $paciente['naturalidade']; ?></p>
+
+                <?php 
+                    $PacienteDAO = new PacienteDAO();
+                    $paciente_agenda = $PacienteDAO->PesquisarByIDPaciente($agenda['idPaciente']);
+                ?>
+
+
+                    <h3><?php echo $paciente_agenda['nome']; ?></h3>
+                    <p>Sexo: <?php echo $paciente_agenda['sexo']; ?></p>
+                    <p>Raça: <?php echo $paciente_agenda['raca']; ?></p>
+                    <p>Data de Nascimento: <?php echo strftime('%d/%m/%Y', strtotime($paciente_agenda['dt_nasc'])); ?>
+                    <p>Endereço: <?php echo $paciente_agenda['endereco']; ?></p>
+                    <p>Pai: <?php echo $paciente_agenda['pai']; ?></p>
+                    <p>Mae: <?php echo $paciente_agenda['mae']; ?></p>
+                    <p>Nacionalidade: <?php echo $paciente_agenda['nacionalidade']; ?></p>
+                    <p>Naturalidade: <?php echo $paciente_agenda['naturalidade']; ?></p>
 
                     <!-- Botão para abrir o Prontuario -->
                     <br>

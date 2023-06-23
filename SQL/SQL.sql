@@ -53,8 +53,7 @@ sexo char (2) not null,
 idEspecialidade int(10) not null,
 primary key (idFuncionario),
 idUsuario int(10) not null,
-constraint usuario_funcionario foreign key (idUsuario) references usuario (idUsuario),
-constraint especialidade_funcionario foreign key (idEspecialidade) references funcionario (idFuncionario)
+constraint usuario_funcionario foreign key (idUsuario) references usuario (idUsuario)
 )
 engine = innodb
 auto_increment = 1
@@ -167,7 +166,7 @@ insert into especialidade (especialidade) values ('Psiquiatria');
 insert into especialidade (especialidade) values ('Endocrinologia');
 insert into especialidade (especialidade) values ('Ortopedia');
 insert into especialidade (especialidade) values ('Dermatologia');
-insert into especialidade (especialidade) values ('Oftalmologia')
+insert into especialidade (especialidade) values ('Oftalmologia');
 
 insert into usuario(nome, email, login, senha, idPerfil) values ('Joao', 'Joao@email.com', 'joao.silva', '202cb962ac59075b964b07152d234b70', '2');
 insert into usuario(nome, email, login, senha, idPerfil) values ('Erick', 'Erick@email.com', 'erick.torres', '202cb962ac59075b964b07152d234b70', '2');

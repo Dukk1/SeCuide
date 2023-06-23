@@ -33,7 +33,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {;
                 //var_dump($UsuarioDTO);
 
                 $PacienteDAO = new PacienteDAO();
-                $result = $PacienteDAO->Gravar($PacienteDTO);
+                $result = $PacienteDAO->PesquisarByID($_SESSION['idUsuario']);
+
+                if ($result) {
+                    // Registro já existe, realizar atualização
+                    $result = $PacienteDAO->Alterar($PacienteDTO);
+                    echo "<script>alert('Dados Alterado com Sucesso!!'); window.location.href = '../VIEW/perfil.php';</script>";
+                    exit();
+                } else {
+                    // Registro não existe, realizar gravação
+                    $result = $PacienteDAO->Gravar($PacienteDTO);
+                    echo "<script>alert('Dados Gravados com Sucesso!!'); window.location.href = '../VIEW/perfil.php';</script>";
+                    exit();
+                }
+
             } else if ($_SESSION['idPerfil'] == 2) {
 
                 $FuncionarioDTO = new FuncionarioDTO();
@@ -54,14 +67,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {;
                 var_dump($FuncionarioDTO);
 
                 $FuncionarioDAO = new FuncionarioDAO();
-                $result = $FuncionarioDAO->Gravar($FuncionarioDTO);
+
+                $result = $FuncionarioDAO->PesquisarByID($_SESSION['idUsuario']);
+
+                if ($result) {
+                    // Registro já existe, realizar atualização
+                    $result = $FuncionarioDAO->Alterar($FuncionarioDTO);
+                    echo "<script>alert('Dados Alterado com Sucesso!!'); window.location.href = '../VIEW/perfil.php';</script>";
+                    exit();
+                } else {
+                    // Registro não existe, realizar gravação
+                    $result = $FuncionarioDAO->Gravar($FuncionarioDTO);
+                    echo "<script>alert('Dados Gravados com Sucesso!!'); window.location.href = '../VIEW/perfil.php';</script>";
+                    exit();
+                }
             }
         } else {
-            echo "<script>alert('Por favor, preencha todos os campos.'); window.location.href = '../view/LoginUser.php';</script>";
+            echo "<script>alert('Por favor, preencha todos os campos.'); window.location.href = '../view/perfil.php';</script>";
         }
     }
 } else {
-    echo "<script>alert('Por favor, preencha todos os campos.'); window.location.href = '../view/LoginUser.php';</script>";
+    echo "<script>alert('Por favor, preencha todos os campos.'); window.location.href = '../view/perfil.php';</script>";
 }
-
-?>

@@ -71,7 +71,7 @@ class FuncionarioDAO {
 
     public function Alterar(FuncionarioDTO $FuncionarioDTO) {
         $pdo = Conexao::getInstance();
-        $sql = "update from funcionario set nome=?,pai=?,mae=?,dt_nasc=?,naturalidade=?,nacionalidade=?,registro=?,endereco=?,rg=?,cpf=?,sexo=?,idEspecialidade=? where idFuncionario=?;";
+        $sql = "UPDATE funcionario SET nome=?,pai=?,mae=?,dt_nasc=?,naturalidade=?,nacionalidade=?,registro=?,endereco=?,rg=?,cpf=?,sexo=?,idEspecialidade=? where idUsuario=?;";
         $execucao = $pdo->prepare($sql);
         $execucao->bindValue(1, $FuncionarioDTO->getNome());
         $execucao->bindValue(2, $FuncionarioDTO->getPai());
@@ -85,8 +85,7 @@ class FuncionarioDAO {
         $execucao->bindValue(10, $FuncionarioDTO->getCpf());
         $execucao->bindValue(11, $FuncionarioDTO->getSexo());
         $execucao->bindValue(12, $FuncionarioDTO->getIdEspecialidade());
-        $execucao->bindValue(13, $FuncionarioDTO->getIdFuncionario());
-
+        $execucao->bindValue(13, $FuncionarioDTO->getidUsuario());
         $resultado = $execucao->execute();
         return $resultado;
     }

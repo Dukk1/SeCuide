@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit();
 
             } else if ($login["idPerfil"] == 3) { //is paciente
-                echo "<script>alert('Login Realizado com Sucesso!!'); window.location.href = '../view/paciente.php';</script>";
+                echo "<script>alert('Login Realizado com Sucesso!!'); window.location.href = '../view/consultas.php';</script>";
                 exit();
             }
         } else {

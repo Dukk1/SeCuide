@@ -1,6 +1,6 @@
 <?php
 
-require_once '/Conexao/Conexao.php';
+require_once 'Conexao/Conexao.php';
 
 class ConsultaDAO {
 
@@ -13,7 +13,7 @@ class ConsultaDAO {
 
         $execucao = $pdo->prepare($sql);
         $execucao->execute();
-        $pesquisa = $execucao -> fetchALL(PDO::FETCH_ASSOC);
+        $pesquisa = $execucao->fetchALL(PDO::FETCH_ASSOC);
         return $pesquisa;
     }
 

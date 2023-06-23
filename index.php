@@ -124,11 +124,11 @@ include_once "webconfig.html";
                 <div class="combobox">
                     <a href="#" class="toggle u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-6 u-btn-1">Minha Conta</a>
                     <div class="dropdown ">
-                        <a href="view/paciente.php" class="option">Perfil</a>
+                        <a href="view/perfil.php" class="option">Perfil</a>
                         <?php if ($_SESSION['idPerfil'] == 2) { ?>
                             <a href="view/doctor.php" class="option">Pacientes</a>
                         <?php } else { ?>
-                            <a href="#" class="option">Consultas</a>
+                            <a href="view/consultas.php" class="option">Consultas</a>
                         <?php } ?>
                         <a href="Controller/logoutControl.php" class="option">Sair</a>
                     </div>

@@ -48,6 +48,16 @@ class PacienteDAO {
         return $execucao->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function PesquisarByIDPaciente($UserID) {
+
+        $pdo = Conexao::getInstance();
+        $sql = "select * from paciente where idPaciente = ?;";
+        $execucao = $pdo->prepare($sql);
+        $execucao->bindValue(1, $UserID);
+        $execucao->execute();
+        return $execucao->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function Gravar(PacienteDTO $PacienteDTO) {
         $pdo = Conexao::getInstance();
         $sql = "insert into paciente (nome, pai, mae, dt_nasc, naturalidade, nacionalidade, raca, endereco, rg, cpf, sexo, idUsuario) values(?,?,?,?,?,?,?,?,?,?,?,?);";

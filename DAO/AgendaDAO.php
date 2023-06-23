@@ -17,6 +17,18 @@ class AgendaDAO {
         return $pesquisa;
     }
 
+    public function PesquisarByID($idPaciente) {
+
+        $pdo = Conexao::getInstance();
+        $sql = "SELECT *, DATE_FORMAT(data, '%d/%m/%Y') AS dt_formatada FROM agenda WHERE idPaciente = :idPaciente";
+    
+        $execucao = $pdo->prepare($sql);
+        $execucao->bindValue(':idPaciente', $idPaciente, PDO::PARAM_INT);
+        $execucao->execute();
+        $pesquisa = $execucao->fetchAll(PDO::FETCH_ASSOC);
+        return $pesquisa;
+    }
+
     public function PesquisarUmRegistro(AgendaDTO $AgendaDTO) {
 
         $pdo = Conexao::getInstance();
