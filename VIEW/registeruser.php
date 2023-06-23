@@ -48,7 +48,6 @@ include_once "../webconfig.html"
                                 <select name="perfil">
                                     <option value="2">Médico</option>
                                     <option value="3">Paciente</option>
-                                    <option value="4">Funcionario</option>
                                 </select>
                             </td>
                         </tr>

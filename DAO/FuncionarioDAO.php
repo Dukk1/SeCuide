@@ -17,6 +17,16 @@ class FuncionarioDAO {
         return $pesquisa;
     }
 
+    public function PesquisarByIDFuncionario($FuncionarioID) {
+
+        $pdo = Conexao::getInstance();
+        $sql = "select * from funcionario where idFuncionario = ?;";
+        $execucao = $pdo->prepare($sql);
+        $execucao->bindValue(1, $FuncionarioID);
+        $execucao->execute();
+        return $execucao->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function PesquisarByID($UserID) {
 
         $pdo = Conexao::getInstance();

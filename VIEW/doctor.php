@@ -8,9 +8,15 @@ require_once "../DAO/EspecialidadeDAO.php";
 require_once "../DAO/FuncionarioDAO.php";
 require_once "../DAO/ProntuarioDAO.php";
 
-// if (!isset($_SESSION['idUsuario'])) {
-//     header('location: loginuser.php');
-//   }
+if (!isset($_SESSION['idUsuario']) ||!isset($_SESSION['idPerfil'])) {
+    header('location: loginuser.php');
+    exit();
+}
+
+ if ($_SESSION['idPerfil'] != 2) {
+     header('location: ../index.php');
+     exit();
+ }
 
 $PacienteDAO = new PacienteDAO();
 $pacientes = $PacienteDAO->ObterPacientes();
@@ -173,25 +179,25 @@ var_dump($_SESSION);
         }
     </style>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Manipulador de evento para mostrar mais detalhes ao passar o mouse por cima
-            $('.patient-info').hover(function() {
-                $(this).toggleClass('expanded');
-            });
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Manipulador de evento para mostrar mais detalhes ao passar o mouse por cima
+        $('.patient-info').hover(function() {
+            $(this).toggleClass('expanded');
         });
+    });
 
-        function openPopup() {
-            var popup = document.getElementById("popup");
-            popup.style.display = "flex";
-        }
+    function openPopup(popupId) {
+        var popup = document.getElementById(popupId);
+        popup.style.display = "flex";
+    }
 
-        function closePopup() {
-            var popup = document.getElementById("popup");
-            popup.style.display = "none";
-        }
-    </script>
+    function closePopup(popupId) {
+        var popup = document.getElementById(popupId);
+        popup.style.display = "none";
+    }
+</script>
 </head>
 
 <body>
@@ -201,34 +207,30 @@ var_dump($_SESSION);
         <?php foreach ($agendas as $agenda) : ?>
             <li>
                 <div class="patient-info">
-
                     <?php
                     $PacienteDAO = new PacienteDAO();
                     $paciente_agenda = $PacienteDAO->PesquisarByIDPaciente($agenda['idPaciente']);
                     ?>
-
-
                     <h3><?php echo $paciente_agenda['nome']; ?></h3>
                     <p>Sexo: <?php echo $paciente_agenda['sexo']; ?></p>
                     <p>Raça: <?php echo $paciente_agenda['raca']; ?></p>
-                    <p>Data de Nascimento: <?php echo strftime('%d/%m/%Y', strtotime($paciente_agenda['dt_nasc'])); ?>
+                    <p>Data de Nascimento: <?php echo strftime('%d/%m/%Y', strtotime($paciente_agenda['dt_nasc'])); ?></p>
                     <p>Endereço: <?php echo $paciente_agenda['endereco']; ?></p>
                     <p>Pai: <?php echo $paciente_agenda['pai']; ?></p>
                     <p>Mae: <?php echo $paciente_agenda['mae']; ?></p>
                     <p>Nacionalidade: <?php echo $paciente_agenda['nacionalidade']; ?></p>
                     <p>Naturalidade: <?php echo $paciente_agenda['naturalidade']; ?></p>
-
-                    <!-- Botão para abrir o Prontuario -->
+                    <!-- Botão para abrir o Prontuário -->
                     <br>
-                    <button class="popup-btn" onclick="openPopup()">Prontuario</button>
+                    <button class="popup-btn" onclick="openPopup('popup-<?php echo $agenda['idAgenda']; ?>')">Prontuário</button>
                 </div>
             </li>
 
-            <!-- Prontuario -->
-            <div class="popup-overlay" id="popup">
+            <!-- Prontuário -->
+            <div class="popup-overlay" id="popup-<?php echo $agenda['idAgenda']; ?>">
                 <div class="popup-content">
-                    <h2>Prontuario</h2>
-                    <button class="close-button" onclick="closePopup('popup')">
+                    <h2>Prontuário</h2>
+                    <button class="close-button" onclick="closePopup('popup-<?php echo $agenda['idAgenda']; ?>')">
                         <i class="fas fa-times close-icon"></i>
                     </button>
 
@@ -243,7 +245,7 @@ var_dump($_SESSION);
 
                     <br>
                     <textarea name="resposta" rows="4" cols="40" placeholder="Digite sua mensagem"></textarea>
-                    <button class="popup-btn" onclick="openPopup()">Enviar Resposta</button>
+                    <button class="popup-btn" onclick="openPopup('popup-<?php echo $agenda['idAgenda']; ?>')">Enviar Resposta</button>
                 </div>
             </div>
         <?php endforeach; ?>
