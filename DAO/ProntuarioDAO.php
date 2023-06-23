@@ -27,6 +27,16 @@ class ProntuarioDAO {
         return $execucao->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function PesquisarByAgendaID($AgendaID) {
+
+        $pdo = Conexao::getInstance();
+        $sql = "select * from prontuario where idAgenda = ?;";
+        $execucao = $pdo->prepare($sql);
+        $execucao->bindValue(1, $AgendaID);
+        $execucao->execute();
+        return $execucao->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function PesquisarUmRegistro(ProntuarioDTO $ProntuarioDTO) {
 
         $pdo = Conexao::getInstance();
@@ -40,13 +50,14 @@ class ProntuarioDAO {
 
     public function Gravar(ProntuarioDTO $ProntuarioDTO) {
         $pdo = Conexao::getInstance();
-        $sql = "insert into prontuario (data,hora,idPaciente,idFuncionario,anamnese) values (?,?,?,?,?);";
+        $sql = "insert into prontuario (data,hora,idPaciente,idFuncionario,idAgenda,anamnese) values (?,?,?,?,?,?);";
         $execucao = $pdo->prepare($sql);
         $execucao->bindValue(1, $ProntuarioDTO->getData());
         $execucao->bindValue(2, $ProntuarioDTO->getHora());
         $execucao->bindValue(3, $ProntuarioDTO->getIdPaciente());
         $execucao->bindValue(4, $ProntuarioDTO->getIdFuncionario());
-        $execucao->bindValue(5, $ProntuarioDTO->getAnamnese());
+        $execucao->bindValue(5, $ProntuarioDTO->getIdAgenda());
+        $execucao->bindValue(6, $ProntuarioDTO->getAnamnese());
 
         $resultado = $execucao->execute();
         return $resultado;

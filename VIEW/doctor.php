@@ -16,7 +16,9 @@ $PacienteDAO = new PacienteDAO();
 $pacientes = $PacienteDAO->ObterPacientes();
 
 $AgendaDAO = new AgendaDAO();
-$agendas = $AgendaDAO->Pesquisar();
+$agendas = $AgendaDAO->PesquisarByIDFuncionario($_SESSION['idFuncionario']);
+
+var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -113,6 +115,62 @@ $agendas = $AgendaDAO->Pesquisar();
             border-radius: 2px;
             cursor: pointer;
         }
+
+        .popup-overlay .close-button {
+            position: relative;
+            top: 5px;
+            left: 90%;
+            width: 30px;
+            height: 30px;
+            padding: 0;
+
+            background-color: #fff;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .popup-overlay button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .popup-overlay input,
+        .popup-overlay select, 
+        .popup-overlay textarea{
+            max-width: 350px;
+            width: 350px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .close-icon {
+            color: black;
+        }
+
+        .popup-overlay button:hover {
+            background-color: #0056b3;
+        }
+
+        .popup-overlay .close-button:hover {
+            background-color: #fff;
+        }
+
+        .popup-overlay h2 {
+            font-size: 20px;
+            text-align: center;
+        }
     </style>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -144,10 +202,10 @@ $agendas = $AgendaDAO->Pesquisar();
             <li>
                 <div class="patient-info">
 
-                <?php 
+                    <?php
                     $PacienteDAO = new PacienteDAO();
                     $paciente_agenda = $PacienteDAO->PesquisarByIDPaciente($agenda['idPaciente']);
-                ?>
+                    ?>
 
 
                     <h3><?php echo $paciente_agenda['nome']; ?></h3>
@@ -170,8 +228,22 @@ $agendas = $AgendaDAO->Pesquisar();
             <div class="popup-overlay" id="popup">
                 <div class="popup-content">
                     <h2>Prontuario</h2>
-                    <p>Texto de exemplo.</p>
-                    <button onclick="closePopup()">Fechar</button>
+                    <button class="close-button" onclick="closePopup('popup')">
+                        <i class="fas fa-times close-icon"></i>
+                    </button>
+
+                    <?php
+                    $ProntuarioDAO = new ProntuarioDAO();
+                    $prontuario = $ProntuarioDAO->PesquisarByAgendaID($agenda['idAgenda']);
+                    ?>
+
+                    <p> Data: <?php echo $agenda['data']; ?></p>
+                    <p> Hora: <?php echo $agenda['hora']; ?></p>
+                    <h3> Sintomas: <?php echo $prontuario['anamnese']; ?></h3>
+
+                    <br>
+                    <textarea name="resposta" rows="4" cols="40" placeholder="Digite sua mensagem"></textarea>
+                    <button class="popup-btn" onclick="openPopup()">Enviar Resposta</button>
                 </div>
             </div>
         <?php endforeach; ?>

@@ -76,7 +76,7 @@ if (!isset($_SESSION['idUsuario'])) {
 </head>
 
 <body>
-    <form name="perfilForm" id="perfilForm" method="POST" action="../Controller/pacienteControl.php">
+    <form name="perfilForm" id="perfilForm" method="POST" action="../Controller/perfilControl.php">
         <label for="nome">Nome Completo:</label>
         <input type="text" id="nome" name="nome" value="<?php if(isset($usuario['nome'])) { echo $usuario['nome']; } else echo "";  ?>" required>
 

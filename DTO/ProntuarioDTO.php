@@ -19,6 +19,7 @@ class ProntuarioDTO {
     private $hora;
     private $idPaciente;
     private $idFuncionario;
+    private $idAgenda;
     private $anamnese;
 
     function getIdProntuario() {
@@ -39,6 +40,10 @@ class ProntuarioDTO {
 
     function getIdFuncionario() {
         return $this->idFuncionario;
+    }
+
+    function getIdAgenda() {
+        return $this->idAgenda;
     }
 
     function getAnamnese() {
@@ -63,6 +68,10 @@ class ProntuarioDTO {
 
     function setIdFuncionario($idFuncionario) {
         $this->idFuncionario = $idFuncionario;
+    }
+
+    function setIdAgenda($idAgenda) {
+        $this->idAgenda = $idAgenda;
     }
 
     function setAnamnese($anamnese) {

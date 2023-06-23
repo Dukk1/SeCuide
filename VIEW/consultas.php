@@ -9,13 +9,15 @@ require_once "../DAO/FuncionarioDAO.php";
 require_once "../DAO/ProntuarioDAO.php";
 
 
-if (!isset($_SESSION['idUsuario'])) {
+if (!isset($_SESSION['idUsuario']) ||!isset($_SESSION['idPerfil'])) {
     header('location: loginuser.php');
-  }
+    exit();
+}
 
-  if ($_SESSION['idPerfil'] != 3) {
-    header('location: ../index.php');
-  } 
+ if ($_SESSION['idPerfil'] != 3) {
+     header('location: ../index.php');
+     exit();
+ }
 
 $ConsultasDAO = new ConsultaDAO();
 $consultas = $ConsultasDAO->Pesquisar();
@@ -28,8 +30,7 @@ $_SESSION['idPaciente'] = $paciente["idPaciente"];
 $AgendaDAO = new AgendaDAO();
 $agendas = $AgendaDAO->PesquisarByID($paciente["idPaciente"]);
 
-$ProntuarioDAO = new ProntuarioDAO();
-$prontuarios = $ProntuarioDAO->PesquisarByID($paciente["idPaciente"]);
+
 ?>
 
 <!DOCTYPE html>
@@ -228,14 +229,26 @@ $prontuarios = $ProntuarioDAO->PesquisarByID($paciente["idPaciente"]);
             <li>
                 <div class="patient-info">
                     <h3> Consulta: <?php echo $agenda['idAgenda']; ?></h3>
-                    <p>  Data: <?php echo $agenda['data']; ?></p>
-                    <p>  Hora: <?php echo $agenda['hora']; ?></p>
+                    <p> Data: <?php echo $agenda['data']; ?></p>
+                    <p> Hora: <?php echo $agenda['hora']; ?></p>
+
+                    <?php
+                    $ProntuarioDAO = new ProntuarioDAO();
+                    $prontuario = $ProntuarioDAO->PesquisarByAgendaID($agenda['idAgenda']);
+                    ?>
+
+                    <h3> Sintomas: <?php echo $prontuario['anamnese']; ?></h3>
 
                     <br>
                     <button class="popup-btn" onclick="openPopup('popup2')">Ver Resposta</button>
+
                 </div>
             </li>
+
+
         <?php endforeach; ?>
+
+
     <?php } else {
         echo "Voce não tem consultas.";
     } ?>
@@ -293,6 +306,8 @@ $prontuarios = $ProntuarioDAO->PesquisarByID($paciente["idPaciente"]);
 
                     ?>
                 </select><br>
+
+
 
                 <button type="submit">Marcar</button>
 

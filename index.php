@@ -145,7 +145,7 @@ include_once "webconfig.html";
             <p class="u-large-text u-text u-text-default u-text-variant u-text-2">
                 Conecte-se com médicos profissionais de forma rápida e conveniente! Tenha consultas online em nosso site, economizando tempo e garantindo atendimento de qualidade. Sua saúde em boas mãos, a apenas um clique de distância!
             </p>
-            <a href="#" class="u-btn u-button-style u-palette-2-base u-btn-1">Consulte-se Agora!</a>
+            <a href="view/consultas.php" class="u-btn u-button-style u-palette-2-base u-btn-1">Consulte-se Agora!</a>
         </div>
     </section>
 

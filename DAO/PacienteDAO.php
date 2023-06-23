@@ -91,7 +91,7 @@ class PacienteDAO {
 
     public function Alterar(PacienteDTO $PacienteDTO) {
         $pdo = Conexao::getInstance();
-        $sql = "updade from paciemte set nome=?,pai=?,mae=?,dt_nasc=?,naturalidade=?,nacionalidade=?,raca=?,endereco=?,rg=?,cpf=?,sexo=?,idUsuario=? where idPaciente=?;";
+        $sql = "UPDATE paciente SET nome=?,pai=?,mae=?,dt_nasc=?,naturalidade=?,nacionalidade=?,raca=?,endereco=?,rg=?,cpf=?,sexo=? where idUsuario=?;";
         $execucao = $pdo->prepare($sql);
         $execucao->bindValue(1, $PacienteDTO->getNome());
         $execucao->bindValue(2, $PacienteDTO->getPai());
@@ -105,7 +105,6 @@ class PacienteDAO {
         $execucao->bindValue(10, $PacienteDTO->getCpf());
         $execucao->bindValue(11, $PacienteDTO->getSexo());
         $execucao->bindValue(12, $PacienteDTO->getIdUsuario());
-        $execucao->bindValue(13, $PacienteDTO->getIdPaciente());
         $resultado = $execucao->execute();
         return $resultado;
     }

@@ -6,7 +6,7 @@ require_once "../DAO/FuncionarioDAO.php";
 
 session_start();
 
-var_dump($_SESSION);
+//var_dump($_SESSION);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {;
 
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {;
                 } else {
                     // Registro não existe, realizar gravação
                     $result = $PacienteDAO->Gravar($PacienteDTO);
-                    echo "<script>alert('Dados Gravados com Sucesso!!'); window.location.href = '../VIEW/perfil.php';</script>";
+                    echo "<script>alert('Dados Gravados com Sucesso!!'); window.location.href = '../index.php';</script>";
                     exit();
                 }
 
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {;
                 $FuncionarioDTO->setIdEspecialidade($_POST['especialidade']);
                 $FuncionarioDTO->setIdUsuario($_SESSION['idUsuario']);
 
-                var_dump($FuncionarioDTO);
+               // var_dump($FuncionarioDTO);
 
                 $FuncionarioDAO = new FuncionarioDAO();
 
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {;
                 } else {
                     // Registro não existe, realizar gravação
                     $result = $FuncionarioDAO->Gravar($FuncionarioDTO);
-                    echo "<script>alert('Dados Gravados com Sucesso!!'); window.location.href = '../VIEW/perfil.php';</script>";
+                    echo "<script>alert('Dados Gravados com Sucesso!!'); window.location.href = '../index.php';</script>";
                     exit();
                 }
             }
