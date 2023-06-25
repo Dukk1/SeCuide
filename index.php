@@ -151,7 +151,7 @@ include_once "webconfig.html";
 
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-01eb">
         <div class="u-clearfix u-sheet u-sheet-1">
-            <p class="u-small-text u-text u-text-variant u-text-1">She likes to suck and fuck me, fuck and suck me</p>
+            <p class="u-small-text u-text u-text-variant u-text-1"></p>
         </div>
     </footer>
     <section class="u-backlink u-clearfix u-grey-80">

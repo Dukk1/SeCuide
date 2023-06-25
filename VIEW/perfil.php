@@ -18,7 +18,8 @@ if (!isset($_SESSION['idUsuario'])) {
   $usuario = $FuncionarioDAO->PesquisarByID($_SESSION['idUsuario']);
   }
 
-  var_dump($usuario);
+//   var_dump($usuario);
+//   echo '<br>'
 ?>
 
 <!DOCTYPE html>

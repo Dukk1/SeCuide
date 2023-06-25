@@ -24,7 +24,7 @@ $pacientes = $PacienteDAO->ObterPacientes();
 $AgendaDAO = new AgendaDAO();
 $agendas = $AgendaDAO->PesquisarByIDFuncionario($_SESSION['idFuncionario']);
 
-var_dump($_SESSION);
+//var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
