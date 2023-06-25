@@ -1,0 +1,30 @@
+.combobox {
+    position: relative;
+    display: flex;
+}
+
+.combobox .dropdown {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    left: 83.2%;
+    width: 160px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.combobox:hover .dropdown {
+    display: block;
+}
+
+.combobox .option {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    color: #000;
+}
+
+.combobox .option:hover {
+    background-color: #ccc;
+}

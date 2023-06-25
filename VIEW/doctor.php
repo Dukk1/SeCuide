@@ -8,15 +8,15 @@ require_once "../DAO/EspecialidadeDAO.php";
 require_once "../DAO/FuncionarioDAO.php";
 require_once "../DAO/ProntuarioDAO.php";
 
-if (!isset($_SESSION['idUsuario']) ||!isset($_SESSION['idPerfil'])) {
+if (!isset($_SESSION['idUsuario']) || !isset($_SESSION['idPerfil'])) {
     header('location: loginuser.php');
     exit();
 }
 
- if ($_SESSION['idPerfil'] != 2) {
-     header('location: ../index.php');
-     exit();
- }
+if ($_SESSION['idPerfil'] != 2) {
+    header('location: ../index.php');
+    exit();
+}
 
 $PacienteDAO = new PacienteDAO();
 $pacientes = $PacienteDAO->ObterPacientes();
@@ -149,8 +149,8 @@ $agendas = $AgendaDAO->PesquisarByIDFuncionario($_SESSION['idFuncionario']);
         }
 
         .popup-overlay input,
-        .popup-overlay select, 
-        .popup-overlay textarea{
+        .popup-overlay select,
+        .popup-overlay textarea {
             max-width: 350px;
             width: 350px;
             padding: 10px;
@@ -179,25 +179,25 @@ $agendas = $AgendaDAO->PesquisarByIDFuncionario($_SESSION['idFuncionario']);
         }
     </style>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // Manipulador de evento para mostrar mais detalhes ao passar o mouse por cima
-        $('.patient-info').hover(function() {
-            $(this).toggleClass('expanded');
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Manipulador de evento para mostrar mais detalhes ao passar o mouse por cima
+            $('.patient-info').hover(function() {
+                $(this).toggleClass('expanded');
+            });
         });
-    });
 
-    function openPopup(popupId) {
-        var popup = document.getElementById(popupId);
-        popup.style.display = "flex";
-    }
+        function openPopup(popupId) {
+            var popup = document.getElementById(popupId);
+            popup.style.display = "flex";
+        }
 
-    function closePopup(popupId) {
-        var popup = document.getElementById(popupId);
-        popup.style.display = "none";
-    }
-</script>
+        function closePopup(popupId) {
+            var popup = document.getElementById(popupId);
+            popup.style.display = "none";
+        }
+    </script>
 </head>
 
 <body>

@@ -43,10 +43,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {;
                 } else {
                     // Registro não existe, realizar gravação
                     $result = $PacienteDAO->Gravar($PacienteDTO);
-                    echo "<script>alert('Dados Gravados com Sucesso!!'); window.location.href = '../index.php';</script>";
-                    exit();
-                }
 
+                    if ($result) {
+                        if (!isset($_SESSION['idPaciente'])) {
+                            $result = $PacienteDAO->PesquisarByID($_SESSION['idUsuario']);
+
+                            if ($result) {
+                                $_SESSION['idPaciente'] =  $result["idPaciente"];
+                            }
+                        }
+
+                        echo "<script>alert('Dados Gravados com Sucesso!!'); window.location.href = '../index.php';</script>";
+                        exit();
+                    } else {
+                        echo "<script>alert('Faça o Login Novamente!!'); window.location.href = '../CONTROLLER/logoutControl.php';</script>";
+                        exit();
+                    }
+                }
             } else if ($_SESSION['idPerfil'] == 2) {
 
                 $FuncionarioDTO = new FuncionarioDTO();
@@ -64,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {;
                 $FuncionarioDTO->setIdEspecialidade($_POST['especialidade']);
                 $FuncionarioDTO->setIdUsuario($_SESSION['idUsuario']);
 
-               // var_dump($FuncionarioDTO);
+                // var_dump($FuncionarioDTO);
 
                 $FuncionarioDAO = new FuncionarioDAO();
 
@@ -78,8 +91,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {;
                 } else {
                     // Registro não existe, realizar gravação
                     $result = $FuncionarioDAO->Gravar($FuncionarioDTO);
-                    echo "<script>alert('Dados Gravados com Sucesso!!'); window.location.href = '../index.php';</script>";
-                    exit();
+
+                    if ($result) {
+                        if (!isset($_SESSION['idFuncionario'])) {
+                            $result = $FuncionarioDAO->PesquisarByID($_SESSION['idUsuario']);
+
+                            if ($result) {
+                                $_SESSION['idFuncionario'] =  $result["idFuncionario"];
+                            }
+                        }
+
+                        echo "<script>alert('Dados Gravados com Sucesso!!'); window.location.href = '../index.php';</script>";
+                        exit();
+                    } else {
+                        echo "<script>alert('Faça o Login Novamente!!'); window.location.href = '../CONTROLLER/logoutControl.php';</script>";
+                        exit();
+                    }
                 }
             }
         } else {

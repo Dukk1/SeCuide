@@ -1,1 +1,1 @@
-Projeto para aula de web aff
+Projeto para aula de programação web

@@ -182,3 +182,15 @@ insert into funcionario (nome, pai, mae, dt_nasc, naturalidade, nacionalidade, r
 ('Joao', 'Souza', 'Maria', '2003-03-12', 'São Paulo - SP', 'Brasileiro', '123456', 'Ceilândia', '1.234.567', '123.456.789-10', 'M', 1, 2);
 insert into funcionario (nome, pai, mae, dt_nasc, naturalidade, nacionalidade, registro, endereco, rg, cpf, sexo, idEspecialidade, idUsuario) values
 ('Leticia', 'Bittencourt', 'Misha', '2003-09-01', 'São Paulo - SP', 'Brasileiro', '123456', 'Aguas Claras', '1.234.567', '123.456.789-10', 'F', 2, 3);
+
+-- Pacientes:
+-- login: manoel.gomes
+-- senha: 123
+-- login: renata.torres
+-- senha: 123
+
+-- Medicos:
+-- login: joao
+-- senha: 123
+-- login: leticia
+-- senha: 123

@@ -8,7 +8,7 @@ include_once "../webconfig.html"
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="userstyle.css">
+    <link rel="stylesheet" href="../css/userstyle.css">
 </head>
 
 <body>

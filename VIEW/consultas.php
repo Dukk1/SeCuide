@@ -37,7 +37,7 @@ $agendas = $AgendaDAO->PesquisarByID($paciente["idPaciente"]);
 <html>
 
 <head>
-    <title>Lista de Pacientes</title>
+    <title>Minhas Consultas</title>
     <style>
         body {
             font-family: Arial, sans-serif;

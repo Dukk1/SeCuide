@@ -26,6 +26,7 @@ if (!isset($_SESSION['idUsuario'])) {
 <html>
 
 <head>
+    <title>Meu Perfil</title>
     <style>
         body {
             font-family: Arial, sans-serif;
